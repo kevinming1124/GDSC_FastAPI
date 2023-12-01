@@ -24,6 +24,8 @@ if __name__ == "__main__":
         load_dotenv("setting/.env.test")
     else:
         load_dotenv("setting/.env.dev")
-
-    uvicorn.run("main:app", host="0.0.0.0" , port=int(os.getenv("PORT")) , reload=bool(os.getenv("RELOAD")) )
+        
+        
     os.environ["DB_TYPE"] = args.db
+    uvicorn.run("main:app", host="0.0.0.0" , port=int(os.getenv("PORT")) , reload=bool(os.getenv("RELOAD")) )
+    

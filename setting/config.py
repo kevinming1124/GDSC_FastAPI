@@ -1,7 +1,6 @@
 import os
 from functools import lru_cache
 from sqlalchemy import text
-from database.generic import get_db
 from dotenv import load_dotenv
 
 
@@ -17,6 +16,6 @@ class Settings():
     app_mode: str = os.getenv("APP_MODE")
     port:int = int(os.getenv("PORT"))
     reload:bool = bool(os.getenv("RELOAD"))
-    database_url:str = os.getenv("DATABASE_URL")
+
     db_type:str = os.getenv("DB_TYPE").upper()
     database_url: str = os.getenv(f"{db_type}_DATABASE_URL")

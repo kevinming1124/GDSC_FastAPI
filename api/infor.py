@@ -1,5 +1,9 @@
 from fastapi import FastAPI,APIRouter
 from setting.config import get_settings
+
+from setting.config import get_settings
+from database.generic import get_db
+
 router = APIRouter(tags=["information"])
 
 @router.get("/infor")
