@@ -37,3 +37,18 @@ class UserRead(UserBase):
     name:str
     email: str
     avatar: Optional[str] = None
+
+class UserUpdate(UserBase):
+    password: Optional[str] = Field(min_length=6)
+    avatar: Optional[str] = None
+    age: Optional[int] = Field(gt=0,lt=100)
+    birthday: Optional[date] = Field()
+
+
+class UserUpdateResponse(UserBase):
+    avatar: Optional[str] = None
+    age: Optional[int] = Field(gt=0,lt=100)
+    birthday: Optional[date] = Field()
+    
+class UserUpdatePassword(BaseModel):
+    password:str

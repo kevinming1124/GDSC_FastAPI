@@ -1,7 +1,6 @@
 from fastapi import APIRouter, HTTPException, status, Depends
 from typing import List , Annotated
 from pydantic import Field
-from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Session 
 from sqlalchemy import select , update , delete
 
@@ -12,13 +11,11 @@ from api.depends import check_user_id, pagination_parms, test_verify_token
 from crud import users as UserCrud
 
 db_session:Session = get_db()
-db_depends:AsyncSession = Depends(get_db)
-
 router = APIRouter(tags=["users"], prefix="/api", dependencies=[Depends(test_verify_token)])
 
 @router.get("/users", response_model=List[UserSchema.UserRead], response_description="Get list of user")
-def get_users(page_parms:dict= Depends(pagination_parms), db_session=db_depends):
-    users = UserCrud.get_users(db_session,**page_parms)
+def get_users(page_parms:dict=Depends(pagination_parms)):
+    users = UserCrud.get_users(**page_parms)
     return users
 
 @router.post("/userCreate" , deprecated=True)

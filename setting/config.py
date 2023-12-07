@@ -18,4 +18,5 @@ class Settings():
     reload:bool = bool(os.getenv("RELOAD"))
 
     db_type:str = os.getenv("DB_TYPE").upper()
-    database_url: str = os.getenv(f"{db_type}_DATABASE_URL")
+    run_mode:str = os.getenv("RUN_MODE").upper()
+    database_url: str = os.getenv(f"{run_mode}_{db_type}_DATABASE_URL")
